@@ -7,6 +7,8 @@ import { fileURLToPath } from 'url'
 import { Server } from 'socket.io'
 import initSocket from './util/initSocket.js'
 import cors from 'cors';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -32,7 +34,7 @@ app.get('/', (req, res) => {
 const io = new Server(server, { cors: { origin: '*'}, serveClient: false } );
 io.on('connection', initSocket)
 
-const port = 5000
-server.listen(port, () => {
+const port = process.env.PORT || 5000;
+server.listen(port, '0.0.0.0', () => {
     console.log(`Server ready on port ${port} 🚀`)
 })

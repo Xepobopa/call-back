@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
    res.send('Hello from server!');
 });
 
-const io = new Server(server, { cors: { origin: '*'}, methods: ["GET", "POST"] } );
+const io = new Server(server, { cors: { origin: '*'}, transports: ['websocket', 'polling'] } );
 io.on('connection', initSocket)
 
 const port = process.env.PORT || 5000;

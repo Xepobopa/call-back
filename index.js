@@ -25,6 +25,10 @@ const server = createServer(app);
 
 app.use(express.static(join(__dirname, '../client/dist')))
 
+app.get('/', (req, res) => {
+   res.send('Hello from server!');
+});
+
 const io = new Server(server, { cors: { origin: '*'}, serveClient: false } );
 io.on('connection', initSocket)
 

@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
    res.send('Hello from server!');
 });
 
-const io = new Server(server, { cors: { origin: '*'}, serveClient: false } );
+const io = new Server(server, { cors: { origin: '*'}, serveClient: true } );
 io.on('connection', initSocket)
 
 const port = process.env.PORT || 5000;

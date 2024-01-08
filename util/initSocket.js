@@ -31,6 +31,12 @@ export default function initSocket(socket) {
         .on('end', (data) => {
             emit(data.to, 'end')
         })
+        .on('voiceCallStart', (data) => {
+            emit(data.to, 'voiceCallStart', {...data, from: id})
+        })
+        .on('voiceCallEnd', (data) => {
+            emit(data.to, 'voiceCallEnd', {...data, from: id})
+        })
         .on('disconnect', () => {
             delete users[id]
             console.log(id, 'disconnected')

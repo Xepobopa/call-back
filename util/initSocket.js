@@ -38,7 +38,7 @@ export default function initSocket(socket) {
             emit(data.to, 'voiceCallReject', {...data, from: id})
         })
         .on('voiceCallSuccess', (data) => {
-            emit(data.to, 'voiceCallStart', {...data, from: id})
+            emit(data.to, 'voiceCallSuccess', {...data, from: id})
         })
         .on('voiceCallEnd', (data) => {
             emit(data.to, 'voiceCallEnd', {...data, from: id})

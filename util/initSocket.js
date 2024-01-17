@@ -50,7 +50,7 @@ export default function initSocket(socket) {
         //     emit(data.to, 'voiceCallEnd', {...data, from: id})
         // })
         .on('disconnect', () => {
+            console.log(id, 'disconnected');
             delete users[id]
-            console.log(id, 'disconnected')
         })
 }

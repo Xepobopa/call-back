@@ -18,9 +18,6 @@ export default function initSocket(socket) {
             users[id] = socket
             console.log(id, 'connected')
             socket.emit('init', { id })
-            
-            console.log('All Users:');
-            console.log(users);
         })
         .on('connection', (data) => {
             emit(data.to, 'connection', {...data, from: id});
@@ -57,7 +54,5 @@ export default function initSocket(socket) {
                 console.log(id, 'disconnected');
                 delete users[id];
             }
-            console.log('All Users:');
-            console.log(users);
         })
 }

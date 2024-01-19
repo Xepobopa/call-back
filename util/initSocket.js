@@ -22,6 +22,9 @@ export default function initSocket(socket) {
         .on('connection', (data) => {
             emit(data.to, 'connection', {...data, from: id});
         })
+        .on('sendMessage', (data) => {
+            emit(data.to, 'sendMessage', {...data, from: id});
+        })
         // .on('request', (data) => {
         //     emit(data.to, 'request', { from: id })
         // })

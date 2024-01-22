@@ -46,7 +46,6 @@ app.get('/sendPushNotification', async (req, res) => {
     console.log('SendPushNotification');
     const notification = new OneSignal.Notification();
     notification.app_id = process.env['ONESIGNAL_APP_ID'];
-    notification.included_segments = ['Subscribed Users'];
     notification.contents = {
         en: "Hello OneSignal!"
     };

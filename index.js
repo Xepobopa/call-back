@@ -32,6 +32,16 @@ app.get('/', (req, res) => {
    res.send('Hello from server!');
 });
 
+// OneSignal
+// See our Server SDKs for more details:
+// https://github.com/OneSignal/onesignal-node-api
+const onesignalConfig = OneSignal.createConfiguration({
+    appKey: process.env['ONESIGNAL_REST_API_KEY'],
+    userKey: process.env['ONESIGNAL_AUTH_KEY'],
+  })
+
+client = new OneSignal.DefaultApi(onesignalConfig);
+
 app.get('/sendPushNotification', async (req, res) => {
     console.log('SendPushNotification');
     const notification = new OneSignal.Notification();
@@ -52,14 +62,3 @@ const port = process.env.PORT || 5000;
 server.listen(port, '0.0.0.0', () => {
     console.log(`Server ready on port ${port} 🚀`)
 })
-
-
-
-// OneSignal
-// See our Server SDKs for more details:
-// https://github.com/OneSignal/onesignal-node-api
-const onesignalConfig = OneSignal.createConfiguration({
-    appKey: process.env['ONESIGNAL_REST_API_KEY'],
-    userKey: process.env['ONESIGNAL_AUTH_KEY'],
-  })
-  export const osClient = new OneSignal.DefaultApi(onesignalConfig);

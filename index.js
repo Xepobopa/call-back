@@ -53,7 +53,7 @@ app.get('/sendPushNotification', async (req, res) => {
         'method': 'POST',
         'url': 'https://onesignal.com/api/v1/notifications',
         'headers': {
-          'Authorization': `Basic ${process.env['ONESIGNAL_REST_API_KEY']}`,
+          'Authorization': "Basic ZjQyOTdjODYtMWQ0ZC00NWY2LTlmNmQtOTViMjY1YTdmNjMz",
           'accept': 'application/json',
           'content-type': 'application/json'
         },
@@ -61,8 +61,8 @@ app.get('/sendPushNotification', async (req, res) => {
           "include_aliases": "All",
           "target_channel": "push",
           "isAnyWeb": true,
-          "contents": {"en": `You've successfully received a deposit`},
-          "headings": {"en": `You've received`},
+          "contents": {"en": "You've successfully received a deposit"},
+          "headings": {"en": "You've received"},
           "name": "Notification",
           "app_id": "e5fb645e-3948-4d1b-86bb-d629c2368e00"
         }

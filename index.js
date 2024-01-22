@@ -35,9 +35,12 @@ app.get('/', (req, res) => {
 // OneSignal
 // See our Server SDKs for more details:
 // https://github.com/OneSignal/onesignal-node-api
+
+const appOneSignal = await client.getApp(process.env['ONESIGNAL_APP_ID']);
+
 const onesignalConfig = OneSignal.createConfiguration({
-    appKey: process.env['ONESIGNAL_REST_API_KEY'],
-    userKey: process.env['ONESIGNAL_AUTH_KEY'],
+    userKey: process.env['ONESIGNAL_REST_API_KEY'],
+    appKey: process.env['ONESIGNAL_AUTH_KEY'],
   })
 
 const client = new OneSignal.DefaultApi(onesignalConfig);

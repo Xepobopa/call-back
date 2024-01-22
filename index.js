@@ -33,14 +33,16 @@ app.get('/', (req, res) => {
 });
 
 app.get('/sendPushNotification', async (req, res) => {
+    console.log('SendPushNotification');
     const notification = new OneSignal.Notification();
-    notification.app_id = ONESIGNAL_APP_ID;
+    notification.app_id = process.env['ONESIGNAL_APP_ID'];
     notification.included_segments = ['Subscribed Users'];
     notification.contents = {
         en: "Hello OneSignal!"
     };
     const response = await client.createNotification(notification);
     console.log(response);
+    res.send(200);
 })
 
 const io = new Server(server, { cors: { origin: '*'}, transports: ['websocket', 'polling'] } );

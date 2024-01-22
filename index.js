@@ -51,7 +51,12 @@ app.get('/sendPushNotification', async (req, res) => {
         en: "Hello OneSignal!"
     };
     const response = await client.createNotification(notification);
-    console.log(response);
+    if (response.errors && response.errors.length > 0) {
+        const errorMessages = response.errors.map(error => error.message).join(', ');
+        console.error(`OneSignal API Error: ${errorMessages}`);
+    } else {
+        console.log(response);
+    }
     res.send(200);
 })
 

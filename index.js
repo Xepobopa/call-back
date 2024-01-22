@@ -64,7 +64,7 @@ app.get('/sendPushNotification', async (req, res) => {
           "contents": {"en": `You've successfully received a deposit`},
           "headings": {"en": `You've received`},
           "name": "Notification",
-          "app_id": `${process.env['ONESIGNAL_APP_ID']}`
+          "app_id": "e5fb645e-3948-4d1b-86bb-d629c2368e00"
         }
         
       };
@@ -85,7 +85,7 @@ app.get('/sendPushNotification', async (req, res) => {
     // } else {
     //     console.log(response);
     // }
-    res.send(200);
+    res.sendStatus(200);
 })
 
 const io = new Server(server, { cors: { origin: '*'}, transports: ['websocket', 'polling'] } );

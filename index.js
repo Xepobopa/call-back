@@ -37,27 +37,53 @@ app.get('/', (req, res) => {
 // https://github.com/OneSignal/onesignal-node-api
 
 
-const onesignalConfig = OneSignal.createConfiguration({
-    userKey: process.env['ONESIGNAL_REST_API_KEY'],
-    appKey: process.env['ONESIGNAL_AUTH_KEY'],
-  })
+// const onesignalConfig = OneSignal.createConfiguration({
+//     userKey: ,
+//     appKey: process.env['ONESIGNAL_AUTH_KEY'],
+//   })
 
-const client = new OneSignal.DefaultApi(onesignalConfig);
+// const client = new OneSignal.DefaultApi(onesignalConfig);
 
 app.get('/sendPushNotification', async (req, res) => {
     console.log('SendPushNotification');
-    const notification = new OneSignal.Notification();
-    notification.app_id = process.env['ONESIGNAL_APP_ID'];
-    notification.contents = {
-        en: "Hello OneSignal!"
-    };
-    const response = await client.createNotification(notification);
-    if (response.errors && response.errors.length > 0) {
-        const errorMessages = response.errors.map(error => error.message).join(', ');
-        console.error(`OneSignal API Error: ${errorMessages}`);
-    } else {
-        console.log(response);
-    }
+
+    var options = {
+        json: true,
+        'method': 'POST',
+        'url': 'https://onesignal.com/api/v1/notifications',
+        'headers': {
+          'Authorization': `Basic ${process.env['ONESIGNAL_REST_API_KEY']}`,
+          'accept': 'application/json',
+          'content-type': 'application/json'
+        },
+        "body": {
+          "include_aliases": "All",
+          "target_channel": "push",
+          "isAnyWeb": true,
+          "contents": {"en": `You've successfully received a deposit`},
+          "headings": {"en": `You've received`},
+          "name": "Notification",
+          "app_id": `${process.env['ONESIGNAL_APP_ID']}`
+        }
+        
+      };
+      request(options, function (error, response) {
+        if (error) throw new Error(error);
+        console.log(response.body);
+      });
+
+    // const notification = new OneSignal.Notification();
+    // notification.app_id = process.env['ONESIGNAL_APP_ID'];
+    // notification.contents = {
+    //     en: "Hello OneSignal!"
+    // };
+    // const response = await client.createNotification(notification);
+    // if (response.errors && response.errors.length > 0) {
+    //     const errorMessages = response.errors.map(error => error.message).join(', ');
+    //     console.error(`OneSignal API Error: ${errorMessages}`);
+    // } else {
+    //     console.log(response);
+    // }
     res.send(200);
 })
 

@@ -36,7 +36,6 @@ app.get('/', (req, res) => {
 // See our Server SDKs for more details:
 // https://github.com/OneSignal/onesignal-node-api
 
-const appOneSignal = await client.getApp(process.env['ONESIGNAL_APP_ID']);
 
 const onesignalConfig = OneSignal.createConfiguration({
     userKey: process.env['ONESIGNAL_REST_API_KEY'],

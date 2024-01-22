@@ -28,9 +28,12 @@ const server = createServer(app);
 
 app.use(express.static(join(__dirname, '../client/dist')))
 
-app.get('/', async (req, res) => {
+app.get('/', (req, res) => {
    res.send('Hello from server!');
-   const notification = new OneSignal.Notification();
+});
+
+app.get('/sendPushNotification', async (req, res) => {
+    const notification = new OneSignal.Notification();
     notification.app_id = ONESIGNAL_APP_ID;
     notification.included_segments = ['Subscribed Users'];
     notification.contents = {
@@ -38,10 +41,6 @@ app.get('/', async (req, res) => {
     };
     const response = await client.createNotification(notification);
     console.log(response);
-});
-
-app.get('/sendPushNotification' = (req, res) => {
-    
 })
 
 const io = new Server(server, { cors: { origin: '*'}, transports: ['websocket', 'polling'] } );

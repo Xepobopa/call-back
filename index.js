@@ -40,7 +40,7 @@ const onesignalConfig = OneSignal.createConfiguration({
     userKey: process.env['ONESIGNAL_AUTH_KEY'],
   })
 
-client = new OneSignal.DefaultApi(onesignalConfig);
+const client = new OneSignal.DefaultApi(onesignalConfig);
 
 app.get('/sendPushNotification', async (req, res) => {
     console.log('SendPushNotification');

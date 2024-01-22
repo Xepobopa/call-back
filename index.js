@@ -72,7 +72,7 @@ app.get('/sendPushNotification', async (req, res) => {
           'content-type': 'application/json'
         },
         "body": {
-        //   "include_aliases": "All",
+          "included_segments": ["All"],
           "target_channel": "push",
           "isAnyWeb": true,
           "contents": {"en": "You've successfully received a deposit"},

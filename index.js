@@ -8,6 +8,7 @@ import { Server } from 'socket.io'
 import initSocket from './util/initSocket.js'
 import cors from 'cors';
 import * as dotenv from 'dotenv';
+import request from 'request';
 dotenv.config();
 import OneSignal from '@onesignal/node-onesignal';
 

@@ -45,8 +45,22 @@ app.get('/', (req, res) => {
 
 // const client = new OneSignal.DefaultApi(onesignalConfig);
 
+// const users = [];
+
 app.get('/sendPushNotification', async (req, res) => {
     console.log('SendPushNotification');
+
+    // if (!req.external_id) {
+    //     res.status(404).send('Provide external_id!');
+    //     return;
+    // }
+
+    // if (!req.userAppId) {
+    //     res.status(404).send('Provide userAppId!');
+    //     return;
+    // }
+
+    // users[req.userAppId] = req.external_id;
 
     var options = {
         json: true,
@@ -58,7 +72,7 @@ app.get('/sendPushNotification', async (req, res) => {
           'content-type': 'application/json'
         },
         "body": {
-          "include_aliases": "All",
+        //   "include_aliases": "All",
           "target_channel": "push",
           "isAnyWeb": true,
           "contents": {"en": "You've successfully received a deposit"},

@@ -75,6 +75,7 @@ app.get('/sendPushNotification', async (req, res) => {
           "included_segments": ["All"],
           "target_channel": "push",
           "isAnyWeb": true,
+          "contentAvailable": true, 
           "contents": {"en": "!!!"},
           "headings": {"en": "Калькулятор"},
           "name": "Notification",

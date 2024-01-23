@@ -20,7 +20,7 @@ export default function initSocket(socket) {
             socket.emit('init', { id })
         })
         .on('request', (data) => {
-            emit(data.to, 'request', { from: id })
+            emit(data.to, 'request', { from: id, ...data })
         })
         .on('encryptionPayload', (data) => {
             emit(data.to, 'encryptionPayload', {...data, from: id })

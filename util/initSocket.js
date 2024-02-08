@@ -19,8 +19,20 @@ export default function initSocket(socket) {
             console.log(id, 'connected')
             socket.emit('init', { id })
         })
+        .on('connection', (data) => {
+            emit(data.to, 'connection', {...data, from: id});
+        })
+        .on('sendMessage', (data) => {
+            emit(data.to, 'sendMessage', {...data, from: id});
+        })
+        .on('call', (data) => {
+            emit(data.to, 'call', {...data, from: id});
+        })
+        .on('finishConnection', (data) => {
+            emit(data.to, 'finishConnection', {...data, from: id});
+        })
         .on('request', (data) => {
-            emit(data.to, 'request', { from: id, ...data })
+            emit(data.to, 'request', { from: id })
         })
         .on('encryptionPayload', (data) => {
             emit(data.to, 'encryptionPayload', {...data, from: id })
@@ -47,7 +59,9 @@ export default function initSocket(socket) {
             emit(data.to, 'voiceCallEnd', {...data, from: id})
         })
         .on('disconnect', () => {
-            delete users[id]
-            console.log(id, 'disconnected')
+            if (id) {
+                console.log(id, 'disconnected');
+                delete users[id];
+            }
         })
 }

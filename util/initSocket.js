@@ -2,6 +2,15 @@ import { nanoid } from 'nanoid'
 
 const users = {}
 
+function generateRandomString(length) {
+    const chars = 'ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz123456789-_';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+}
+
 export default function initSocket(socket) {
     let id
 
@@ -14,7 +23,7 @@ export default function initSocket(socket) {
 
     socket
         .on('init', () => {
-            id = nanoid(5)
+            id = generateRandomString(5)
             users[id] = socket
             console.log(id, 'connected')
             socket.emit('init', { id })

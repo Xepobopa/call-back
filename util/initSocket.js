@@ -46,6 +46,9 @@ export default function initSocket(socket) {
         .on('send', (data) => {
             emit(data.to, 'send', { ...data, from: id });
         })
+        .on('voiceCallTry', (data) => {
+            emit(data.to, 'voiceCallTry', {...data, from: id})
+        })
         .on('voiceCallStart', (data) => {
             emit(data.to, 'voiceCallStart', {...data, from: id})
         })

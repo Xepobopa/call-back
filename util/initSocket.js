@@ -55,6 +55,9 @@ export default function initSocket(socket) {
         .on('send', (data) => {
             emit(data.to, 'send', { ...data, from: id });
         })
+        .on('packetLoss', (data) => {
+            emit(data.to, 'packetLoss', { ...data, from: id });
+        })
         .on('voiceCallTry', (data) => {
             emit(data.to, 'voiceCallTry', {...data, from: id})
         })

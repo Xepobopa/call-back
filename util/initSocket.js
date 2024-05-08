@@ -73,6 +73,9 @@ export default function initSocket(socket) {
         .on('voiceCallEnd', (data) => {
             emit(data.to, 'voiceCallEnd', {...data, from: id})
         })
+        .on('deleteMessage', (data) => {
+            emit(data.to, 'deleteMessage', {...data, from: id})
+        })
         .on('disconnect', () => {
             if (id) {
                 console.log(id, 'disconnected');
